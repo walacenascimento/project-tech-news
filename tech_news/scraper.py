@@ -2,7 +2,7 @@
 
 import time
 import requests
-# from parsel import Selector
+from parsel import Selector
 # from tech_news.database import create_news
 
 
@@ -21,11 +21,17 @@ def fetch(url):
         return None
 
 
-# Requisito
+# Requisito 2
 
 
 def scrape_novidades(html_content):
     """Seu código deve vir aqui"""
+
+    selector = Selector(text=html_content)
+    url_news = ".entry-thumbnail div.cs-overlay a::attr(href)"
+    all_news_url = selector.css(url_news).getall()
+
+    return all_news_url
 
 
 # Requisito 3
